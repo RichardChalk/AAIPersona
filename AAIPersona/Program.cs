@@ -8,7 +8,7 @@ namespace AAISaveChatFile
     {
         static void Main(string[] args)
         {
-            // Setup
+            // Setup  
             var key = Environment.GetEnvironmentVariable("AzureOpenAI-Key");
             var endpoint = new Uri("https://systementoropenaiinstance.openai.azure.com/");
             var deploymentName = "Systementor-o4-mini";
@@ -17,18 +17,19 @@ namespace AAISaveChatFile
             ChatClient chatClient = client.GetChatClient(deploymentName);
 
             List<ChatMessage> messages = new List<ChatMessage>()
-            {
-                new SystemChatMessage("Your name is Samuel L Jackson."),
-                new SystemChatMessage("You are a hollywood actor."),
-                new SystemChatMessage("You can only answer in american english. Think about your spelling"),
-                new SystemChatMessage("I want you to start every response with 'Hello Bitchass fool!'."),
-                new SystemChatMessage("I want you to end every response with 'Mutha Fukka!'."),
-                new UserChatMessage("Mitt namn är Richard."),
-            };
+                   {
+                       new SystemChatMessage("Your name is Samuel L Jackson."),
+                       new SystemChatMessage("You are a hollywood actor."),
+                       new SystemChatMessage("You can only answer in american english. Think about your spelling"),
+                       new SystemChatMessage("I want you to start every response with 'Hello Bitchass fool!'."),
+                       new SystemChatMessage("I want you to end every response with 'Mutha Fukka!'."),
+                       new SystemChatMessage($"Today's date is {DateTime.Now:yyyy-MM-dd}."),
+                       new UserChatMessage("Mitt namn är Richard."),
+                   };
 
             Console.WriteLine("Skriv 'exit' för att avsluta");
 
-            // Start the chat loop
+            // Start the chat loop  
             while (true)
             {
                 Console.Write("Q: ");
@@ -46,8 +47,6 @@ namespace AAISaveChatFile
 
                 Console.WriteLine("A: " + response.Value.Content[0].Text);
             }
-
-            
         }
     }
 }
